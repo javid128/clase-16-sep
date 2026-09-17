@@ -1,0 +1,34 @@
+import { useState } from 'react';
+
+export const ListaNombres = () => {
+    // Variables de estado para los nombres
+    const [nombre, setNombre] = useState('');
+    const [nombres, setNombres] = useState([]);
+
+    // Funcion para guardar los nombres en el arreglo
+    const guardar = () => {
+        setNombres([...nombres, nombre]);
+        setNombre('');
+    }
+
+    return (
+        <div>
+            <p>Ingresa un Nombre:</p>
+            <input
+                type="text"
+                value={nombre}
+                onChange={(e) => { setNombre(e.target.value) }}
+            />
+            <button onClick={guardar}>Enviar</button>
+            <ul>
+                {
+                    nombres.map((elemento, index) => {
+                        return (
+                            <li key={index}>{elemento}</li>
+                        )
+                    })
+                }
+            </ul>
+        </div>
+    )
+}
